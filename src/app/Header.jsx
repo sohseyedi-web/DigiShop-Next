@@ -10,7 +10,7 @@ const Header = () => {
           <Link href={"/products"}>فروشگاه</Link>
           <Link href={"/"}>ارتباط با ما</Link>
         </div>
-        <Link href={"/auth"} className="btn btn--primary">
+        <Link href={"/auth"} className="btn btn__primary">
           ورود / ثبت نام
         </Link>
       </nav>

@@ -1,11 +1,8 @@
 "use client";
-
-import ",./globals.css";
-import { Inter } from "next/font/google";
+import vazirFont from "@/constants/localFonts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import "../globals.css";
 import { Toaster } from "react-hot-toast";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "دیجی شاپ / خانه",
@@ -17,7 +14,10 @@ const queryClinet = new QueryClient();
 export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={inter.className}>
+      <body
+        suppressHydrationWarning={true}
+        className={`${vazirFont.variable} font-sans`}
+      >
         <QueryClientProvider client={queryClinet}>
           <Toaster />
           {children}
