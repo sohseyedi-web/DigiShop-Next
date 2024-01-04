@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
+    "@tanstack/react-query": "^5.17.1",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
     "eslint": "8.40.0",
@@ -18,6 +20,7 @@
     "query-string": "^8.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.49.2",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.8.0",
     "react-loader-spinner": "^5.3.4",
@@ -27,5 +30,8 @@
     "react-select": "^5.7.3",
     "react-tag-input-component": "^2.0.2",
     "tailwindcss": "3.3.2"
+  },
+  "devDependencies": {
+    "daisyui": "^4.5.0"
   }
 }
