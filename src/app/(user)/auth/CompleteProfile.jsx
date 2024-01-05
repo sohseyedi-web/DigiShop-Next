@@ -39,7 +39,7 @@ const CompleteProfile = () => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <button className="btn btn__primary">
+      <button className="mt-2 btn btn-active btn-primary w-full text-lg h-[45px] text-white">
         {isPending ? "لطفا صبر کنید" : "تکمیل اطلاعات"}
       </button>
     </form>

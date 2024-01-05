@@ -52,7 +52,11 @@ const AuthContainer = () => {
     }
   };
 
-  return <div className="w-full py-2">{renderSteps()}</div>;
+  return (
+    <div className=" py-2">
+      {renderSteps()}
+    </div>
+  );
 };
 
 export default AuthContainer;

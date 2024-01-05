@@ -39,6 +39,7 @@ const CheckOTP = ({ phoneNumber, onStep, onResend }) => {
 
   return (
     <form className="space-y-4" onSubmit={checkOtpHandler}>
+      <h4 className="text-xl text-gray-800 font-bold">کد تایید را وارد کنید</h4>
       <p className="my-2 m-0 font-medium">
         کد به شماره {phoneNumber} ارسال شده{" "}
         <span
@@ -65,7 +66,7 @@ const CheckOTP = ({ phoneNumber, onStep, onResend }) => {
       />
       {time > 0 ? (
         <>
-          <button className="btn btn__primary">
+          <button className="mt-2 btn btn-active btn-primary w-full text-lg h-[45px] text-white">
             {isPending ? "لطفا صبر کنید" : "ثبت کد"}
           </button>
           <p className="mt-2 text-center text-gray-800">
@@ -73,7 +74,7 @@ const CheckOTP = ({ phoneNumber, onStep, onResend }) => {
           </p>
         </>
       ) : (
-        <button onClick={onResend} className="btn btn__primary">
+        <button onClick={onResend} className="mt-2 btn btn-active btn-info w-full text-lg h-[45px] text-white">
           ارسال مجدد کد؟
         </button>
       )}

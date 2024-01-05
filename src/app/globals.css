@@ -37,15 +37,7 @@
   .textField {
     @apply w-full text-center py-3 px-4 rounded-xl bg-gray-300 text-secondary-800 border border-gray-100 outline-none duration-200 transition-all ease-in-out hover:border-primary-300 focus:outline-none focus:border-primary-300 focus:bg-white focus:shadow-md;
   }
-  .btn {
-    @apply w-full text-white px-2 py-1 font-bold rounded-xl transition-all duration-300;
-  }
-  .btn__primary {
-    @apply px-4 py-3 bg-primary-900 shadow-lg shadow-primary-300 hover:bg-primary-800;
-  }
-  .btn__success {
-    @apply px-4 py-3 bg-green-600 shadow-lg shadow-primary-300 hover:bg-green-500;
-  }
+  
 }
 
 html,
