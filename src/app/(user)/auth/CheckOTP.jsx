@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import OTPInput from "react-otp-input";
-import { checkOTP } from '@/services/authServices';
+import { checkOTP } from "@/services/authServices";
 let RESEND_TIME = 90;
 
 const CheckOTP = ({ phoneNumber, onStep, onResend }) => {
@@ -15,6 +15,7 @@ const CheckOTP = ({ phoneNumber, onStep, onResend }) => {
   const { mutateAsync, isPending } = useMutation({
     mutationFn: checkOTP,
   });
+
 
   useEffect(() => {
     const timer = time > 0 && setInterval(() => setTime((t) => t - 1), 1000);
@@ -31,7 +32,7 @@ const CheckOTP = ({ phoneNumber, onStep, onResend }) => {
       if (!user.isActive) return onStep(3);
       router.push("/");
     } catch (error) {
-      console.log(error)
+      console.log(error);
       toast.error(error?.response?.data?.message);
     }
   };

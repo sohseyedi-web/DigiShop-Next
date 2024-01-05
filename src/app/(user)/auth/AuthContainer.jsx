@@ -42,7 +42,7 @@ const AuthContainer = () => {
           <CheckOTP
             onResend={sendOtpHanlder}
             onStep={setStep}
-            phone={phoneNumber}
+            phoneNumber={phoneNumber}
           />
         );
       case 3:

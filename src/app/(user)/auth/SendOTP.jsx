@@ -6,7 +6,7 @@ const SendOTP = ({ loading, onSubmit, onChange, phoneNumber }) => {
       <TextField
         label={"شماره موبایل"}
         onChange={onChange}
-        name={"phone"}
+        name={"phoneNumber"}
         value={phoneNumber}
         placeholder="شماره موبایل را وارد کنید"
       />
