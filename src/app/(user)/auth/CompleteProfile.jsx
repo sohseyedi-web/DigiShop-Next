@@ -3,7 +3,7 @@ import { completedUser } from "@/services/authServices";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-import  TextField  from "@/ui/TextField";
+import TextField from "@/ui/TextField";
 import { useMutation } from "@tanstack/react-query";
 
 const CompleteProfile = () => {
@@ -17,7 +17,7 @@ const CompleteProfile = () => {
   const completedProfileHandler = async (e) => {
     e.preventDefault();
     try {
-      await mutateAsync({ email, name });
+      await mutateAsync({ name, email });
       toast.success("اطلاعات با موفقیت ثبت شد");
       router.push("/");
     } catch (error) {
