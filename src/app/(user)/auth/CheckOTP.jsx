@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import OTPInput from "react-otp-input";
 import { checkOTP } from "@/services/authServices";
+import Loading from "@/ui/Loading";
 let RESEND_TIME = 90;
 
 const CheckOTP = ({ phoneNumber, onStep, onResend }) => {
@@ -67,7 +68,7 @@ const CheckOTP = ({ phoneNumber, onStep, onResend }) => {
       {time > 0 ? (
         <>
           <button className="mt-2 btn btn-active btn-primary w-full text-lg h-[45px] text-white">
-            {isPending ? "لطفا صبر کنید" : "ثبت کد"}
+            {isPending ? <Loading/> : "ثبت کد"}
           </button>
           <p className="mt-2 text-center text-gray-800">
             {time} ثانیه تا ارسال مجدد کد

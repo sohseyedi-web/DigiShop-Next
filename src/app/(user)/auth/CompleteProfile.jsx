@@ -5,6 +5,7 @@ import { useState } from "react";
 import { toast } from "react-hot-toast";
 import TextField from "@/ui/TextField";
 import { useMutation } from "@tanstack/react-query";
+import Loading from "@/ui/Loading";
 
 const CompleteProfile = () => {
   const [name, setName] = useState("");
@@ -40,7 +41,7 @@ const CompleteProfile = () => {
         onChange={(e) => setEmail(e.target.value)}
       />
       <button className="mt-2 btn btn-active btn-primary w-full text-lg h-[45px] text-white">
-        {isPending ? "لطفا صبر کنید" : "تکمیل اطلاعات"}
+        {isPending ? <Loading/> : "تکمیل اطلاعات"}
       </button>
     </form>
   );
