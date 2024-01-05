@@ -1,3 +1,4 @@
+import Loading from "@/ui/Loading";
 import TextField from "@/ui/TextField";
 const SendOTP = ({ loading, onSubmit, onChange, phoneNumber }) => {
   return (
@@ -11,7 +12,7 @@ const SendOTP = ({ loading, onSubmit, onChange, phoneNumber }) => {
         placeholder="شماره موبایل را وارد کنید"
       />
       <button className="mt-2 btn btn-active btn-primary w-full text-lg h-[45px] text-white">
-        {loading ? "لطفا صبر کنید" : "ورود"}
+        {loading ? <Loading/> : "ورود"}
       </button>
       <p className="text-sm my-2 text-center">ورود شما به معنای پذیرش شرایط دیجی شاپ و قوانین حریم‌خصوصی است</p>
 
