@@ -3,13 +3,14 @@ import { getUser } from "@/services/authServices";
 
 export const useAuth = () => {
   const { data, isLoading } = useQuery({
-    queryKey: ["user"],
+    queryKey: ["get-user"],
     queryFn: getUser,
     retry: false,
     refetchOnWindowFocus: true,
   });
 
   const { user, cart } = data || {};
+  const role = user?.role === "ADMIN" ? "admin" : "profile"
 
-  return { isLoading, user, cart };
+  return { isLoading, user, cart,role };
 };
