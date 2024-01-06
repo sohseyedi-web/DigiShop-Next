@@ -19,7 +19,7 @@ const Header = () => {
             ورود / ثبت نام
           </Link>
         ) : (
-          <Link href={"/"} className="btn btn-success">
+          <Link href={"/profile"} className="btn btn-success">
             {isLoading ? <Loading /> : user?.name}
           </Link>
         )}
