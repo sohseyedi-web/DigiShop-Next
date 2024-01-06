@@ -1,6 +1,10 @@
+import { useAuth } from "@/hooks/useAuth";
+import Loading from "@/ui/Loading";
 import Link from "next/link";
 
 const Header = () => {
+  const { user, isLoading } = useAuth();
+
   return (
     <header className="w-full py-4 border-b border-gray-400 shadow">
       <nav className="flex items-center justify-between max-w-7xl mx-auto container lg:px-0 px-3">
@@ -10,9 +14,15 @@ const Header = () => {
           <Link href={"/products"}>فروشگاه</Link>
           <Link href={"/"}>ارتباط با ما</Link>
         </div>
-        <Link href={"/auth"} className="btn btn__primary">
-          ورود / ثبت نام
-        </Link>
+        {user ? (
+          <Link href={"/auth"} className="btn btn-neutral">
+            ورود / ثبت نام
+          </Link>
+        ) : (
+          <Link href={"/"} className="btn btn-success">
+            {isLoading ? <Loading /> : user?.name}
+          </Link>
+        )}
       </nav>
     </header>
   );
