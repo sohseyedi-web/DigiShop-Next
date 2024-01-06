@@ -1,9 +1,9 @@
-import Header from "@/components/Header";
+import HeaderLayout from "@/components/Header";
 
 export default function Home() {
   return (
     <main className="text-3xl">
-      <Header />
+      <HeaderLayout />
       <div>صفحه خانه</div>
     </main>
   );

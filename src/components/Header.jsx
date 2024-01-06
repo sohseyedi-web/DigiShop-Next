@@ -36,4 +36,4 @@ const HeaderLayout = () => {
   );
 };
 
-export default Header;
+export default HeaderLayout;
