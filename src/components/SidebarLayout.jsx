@@ -17,7 +17,7 @@ const SidebarLayout = ({ children }) => {
       <aside
         className={`${
           active ? "w-[240px] right-0 top-0" : "-right-28 w-0 top-0"
-        } fixed z-50 lg:relative h-screen bg-gray-100 border-l text-[#053B50]  py-5 px-3 rounded space-y-3 transition-all duration-300`}
+        } fixed z-50 lg:relative h-screen bg-gray-100 border-l text-[#053B50]  py-3.5 px-3 rounded space-y-3 transition-all duration-300`}
       >
         <div className="flex items-center gap-x-2 text-indigo-600 px-2">
           <SiRobotframework size={32} />

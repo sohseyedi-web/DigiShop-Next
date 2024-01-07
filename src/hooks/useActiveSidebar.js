@@ -11,5 +11,5 @@ export const useActiveSidebar = () => {
     return () => window.removeEventListener("resize", updateMedia);
   }, [active]);
 
-  return { active, updateMedia };
+  return { active, setActive };
 };
