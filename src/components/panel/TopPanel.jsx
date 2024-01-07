@@ -1,4 +1,4 @@
-import {toLocalDateString} from '../../utils/toLocalDate'
+import {toLocalDateString} from '@/utils/toLocalDate'
 const ROLES = {
   ADMIN: "ادمین",
   USER: "کاربر",
