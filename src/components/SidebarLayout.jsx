@@ -23,7 +23,8 @@ const SidebarLayout = ({ children }) => {
           <SiRobotframework size={32} />
           <h4 className="text-2xl font-bold">دیجی شاپ</h4>
         </div>
-        <div className="mt-7">
+        <hr />
+        <div className="pt-3">
           <ul className="flex flex-col gap-y-3">
             {children}
             <button
