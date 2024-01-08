@@ -9,7 +9,7 @@ import { getOTP } from "@/services/authServices";
 
 const AuthContainer = () => {
   const [step, setStep] = useState(2);
-  const [phoneNumber, setPhoneNumber] = useState("09168383108");
+  const [phoneNumber, setPhoneNumber] = useState("0916838108");
 
   const { isPending, mutateAsync } = useMutation({
     mutationFn: getOTP,
@@ -52,11 +52,7 @@ const AuthContainer = () => {
     }
   };
 
-  return (
-    <div className=" py-2">
-      {renderSteps()}
-    </div>
-  );
+  return <div className=" py-2">{renderSteps()}</div>;
 };
 
 export default AuthContainer;
