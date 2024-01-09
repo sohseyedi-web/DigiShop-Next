@@ -9,7 +9,7 @@ import { getOTP } from "@/services/authServices";
 
 const AuthContainer = () => {
   const [step, setStep] = useState(2);
-  const [phoneNumber, setPhoneNumber] = useState("0916838108");
+  const [phoneNumber, setPhoneNumber] = useState("09331559119");
 
   const { isPending, mutateAsync } = useMutation({
     mutationFn: getOTP,

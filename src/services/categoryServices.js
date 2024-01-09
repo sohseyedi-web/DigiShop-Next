@@ -8,8 +8,8 @@ export function getCategoryById(id) {
   return http.get(`/category/${id}`).then(({ data }) => data.data);
 }
 
-export function addNewCategory(id) {
-  return http.post(`/admin/category/add${id}`).then(({ data }) => data.data);
+export function addNewCategory(data) {
+  return http.post("/admin/category/add", data).then(({ data }) => data.data);
 }
 
 export function updateCategory(id, data) {
