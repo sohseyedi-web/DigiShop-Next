@@ -1,7 +1,9 @@
 import { useCreateCategory } from "@/hooks/useCategories";
 import Loading from "@/ui/Loading";
+import SelectField from "@/ui/SelectField";
 import TextField from "@/ui/TextField";
 import { useState } from "react";
+import { categoryTypes } from "@/constants/categoryTypes";
 
 const CreateCategory = ({ onClose }) => {
   const { addCategory, isCreating } = useCreateCategory();
@@ -10,6 +12,7 @@ const CreateCategory = ({ onClose }) => {
     title: "",
     description: "",
     englishTitle: "",
+    type: "",
   });
 
   const onChangeHandler = (e) => {
@@ -18,7 +21,7 @@ const CreateCategory = ({ onClose }) => {
 
   const handleCategoryForm = async (e) => {
     e.preventDefault();
-    const newCategory = { ...formState, type: "product" };
+    const newCategory = { ...formState };
     try {
       await addCategory(newCategory, {
         onSuccess: () => onClose(),
@@ -50,6 +53,13 @@ const CreateCategory = ({ onClose }) => {
         value={formState.englishTitle}
         onChange={onChangeHandler}
         placeholder={"مثال : design"}
+      />
+      <SelectField
+        name="type"
+        label={"دسته بندی"}
+        options={categoryTypes}
+        value={formState.type}
+        onChange={onChangeHandler}
       />
       <button className="btn btn-primary text-white text-lg h-[45px] w-full">
         {isCreating ? <Loading /> : "تایید"}

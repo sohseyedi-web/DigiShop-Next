@@ -3,6 +3,7 @@ import {
   getCategory,
   getCategoryById,
   addNewCategory,
+  removeCategory,
 } from "@/services/categoryServices";
 import { toast } from "react-hot-toast";
 
@@ -38,4 +39,20 @@ export const useCreateCategory = () => {
   });
 
   return { addCategory, isCreating };
+};
+
+export const useRemoveCategory = () => {
+  const queryClient = useQueryClient();
+
+  const { isPending: isDeleting, mutateAsync: removeCategories } = useMutation({
+    mutationFn: removeCategory,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["get-categories"],
+      });
+    },
+    onError: (err) => toast.error(err?.response?.data?.message),
+  });
+
+  return { isDeleting, removeCategories };
 };

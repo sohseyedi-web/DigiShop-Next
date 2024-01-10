@@ -1,7 +1,7 @@
 import React from "react";
 import { useCreateCategory } from "@/hooks/useCategories";
 import { useState } from "react";
-import { TextField } from '@/ui/TextField';
+import TextField from "@/ui/TextField";
 
 const CreateProduct = ({ onClose }) => {
   const { addCategory, isCreating } = useCreateCategory();
