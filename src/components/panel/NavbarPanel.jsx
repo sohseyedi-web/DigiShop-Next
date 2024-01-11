@@ -1,13 +1,12 @@
 "use client";
 import * as RiIcon from "react-icons/ri";
-import { useActiveSidebar } from "@/hooks/useActiveSidebar";
 import { useAuth } from "@/hooks/useAuth";
+import { useResponsive } from '@/context/ResponsiveContext';
 
 const NavbarPanel = () => {
-  const { setActive, active } = useActiveSidebar();
+  const { setActive, active } = useResponsive();
   const { user } = useAuth();
 
-  console.log(active);
 
   return (
     <nav className="w-full flex border-b py-1 items-center justify-between text-gray-800">

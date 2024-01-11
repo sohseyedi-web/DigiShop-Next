@@ -1,11 +1,11 @@
 import { logout } from "@/services/authServices";
 import Back from "@/ui/Back";
 import { RiShutDownLine } from "react-icons/ri";
-import { useActiveSidebar } from "@/hooks/useActiveSidebar";
 import { SiRobotframework } from "react-icons/si";
+import { useResponsive } from "@/context/ResponsiveContext";
 
 const SidebarLayout = ({ children }) => {
-  const { active } = useActiveSidebar();
+  const { active  } = useResponsive();
   const logoutHandler = async () => {
     await logout();
     document.location.href("/");

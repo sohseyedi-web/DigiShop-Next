@@ -1,7 +1,7 @@
-import { useActiveSidebar } from "@/hooks/useActiveSidebar";
+import { useResponsive } from '@/context/ResponsiveContext';
 
 const Back = () => {
-  const { active, setActive } = useActiveSidebar();
+  const { active, setActive } = useResponsive();
 
   return (
     active && (
