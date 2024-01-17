@@ -4,6 +4,7 @@ import {
   getCategoryById,
   addNewCategory,
   removeCategory,
+  updateCategory,
 } from "@/services/categoryServices";
 import { toast } from "react-hot-toast";
 
@@ -56,3 +57,21 @@ export const useRemoveCategory = () => {
 
   return { isDeleting, removeCategories };
 };
+
+export const useUpdateCategory = () => {
+  const queryClient = useQueryClient();
+  const { mutateAsync: updateCategories, isPending: isUpdating } = useMutation({
+    mutationFn: updateCategory,
+    onSuccess: (data) => {
+      toast.success(data.message);
+      queryClient.invalidateQueries({
+        queryKey: ["get-categories"],
+      });
+    },
+    onError: (err) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+
+  return { isUpdating, updateCategories };
+}

@@ -12,7 +12,7 @@ export function addNewCategory(data) {
   return http.post("/admin/category/add", data).then(({ data }) => data.data);
 }
 
-export function updateCategory(id, data) {
+export function updateCategory({ id, data }) {
   return http
     .patch(`/admin/category/update/${id}`, data)
     .then(({ data }) => data.data);

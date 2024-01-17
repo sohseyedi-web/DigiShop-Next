@@ -2,12 +2,15 @@ import { useRemoveCategory } from "@/hooks/useCategories";
 import { useGetProducts } from "@/hooks/useProducts";
 import { toast } from "react-hot-toast";
 import * as RiIcon from "react-icons/ri";
-import Loading from '@/ui/Loading';
-
+import Loading from "@/ui/Loading";
+import { useState } from "react";
+import Modal from "@/ui/Modal";
+import EditCategory from "./EditCategory";
 
 const CategoryItem = ({ item }) => {
   const { removeCategories, isDeleting } = useRemoveCategory();
   const { products } = useGetProducts();
+  const [isEdit, setIsEdit] = useState(false);
 
   const hasCategoryProduct = products?.filter(
     (product) => product.category?.title === item?.title
@@ -30,9 +33,16 @@ const CategoryItem = ({ item }) => {
     >
       <h6 className="text-lg font-semibold">{item?.title}</h6>
       <div className="flex items-center gap-x-4">
-        <button className="text-indigo-800">
+        <button onClick={() => setIsEdit(true)} className="text-indigo-800">
           <RiIcon.RiEdit2Line size={25} />
         </button>
+        <Modal
+          onClose={() => setIsEdit(false)}
+          open={isEdit}
+          title={"ویرایش دسته بندی"}
+        >
+          <EditCategory id={item?._id} onClose={() => setIsEdit(false)}/>
+        </Modal>
         <button onClick={handleRemoveCategory} className="text-red-500">
           {isDeleting ? <Loading /> : <RiIcon.RiDeleteBin2Line size={25} />}
         </button>

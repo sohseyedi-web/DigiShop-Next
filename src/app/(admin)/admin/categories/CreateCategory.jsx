@@ -1,9 +1,6 @@
 import { useCreateCategory } from "@/hooks/useCategories";
-import Loading from "@/ui/Loading";
-import SelectField from "@/ui/SelectField";
-import TextField from "@/ui/TextField";
 import { useState } from "react";
-import { categoryTypes } from "@/constants/categoryTypes";
+import CategoryForm from "@/components/CategoryForm";
 
 const CreateCategory = ({ onClose }) => {
   const { addCategory, isCreating } = useCreateCategory();
@@ -32,39 +29,12 @@ const CreateCategory = ({ onClose }) => {
   };
 
   return (
-    <form className="space-y-3" onSubmit={handleCategoryForm}>
-      <TextField
-        label={"عنوان دسته بندی"}
-        name="title"
-        value={formState.title}
-        onChange={onChangeHandler}
-        placeholder="مثال : برنامه نویسی"
-      />
-      <TextField
-        label={"توضیحات"}
-        name="description"
-        value={formState.description}
-        onChange={onChangeHandler}
-        placeholder={"توضیحاتی درباره پروژه بنویسید"}
-      />
-      <TextField
-        label={"عنوان انگلیسی"}
-        name="englishTitle"
-        value={formState.englishTitle}
-        onChange={onChangeHandler}
-        placeholder={"مثال : design"}
-      />
-      <SelectField
-        name="type"
-        label={"دسته بندی"}
-        options={categoryTypes}
-        value={formState.type}
-        onChange={onChangeHandler}
-      />
-      <button className="btn btn-primary text-white text-lg h-[45px] w-full">
-        {isCreating ? <Loading /> : "تایید"}
-      </button>
-    </form>
+    <CategoryForm
+      category={formState}
+      onSubmit={handleCategoryForm}
+      onChangeHandler={onChangeHandler}
+      isLoading={isCreating}
+    />
   );
 };
 
