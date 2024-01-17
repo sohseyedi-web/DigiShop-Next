@@ -6,9 +6,11 @@ import { toast } from "react-hot-toast";
 import OTPInput from "react-otp-input";
 import { checkOTP } from "@/services/authServices";
 import Loading from "@/ui/Loading";
+import { useAuth } from "@/hooks/useAuth";
 let RESEND_TIME = 90;
 
 const CheckOTP = ({ phoneNumber, onStep, onResend }) => {
+  const { role } = useAuth();
   const [otp, setOtp] = useState("");
   const [time, setTime] = useState(RESEND_TIME);
   const router = useRouter();
@@ -16,7 +18,6 @@ const CheckOTP = ({ phoneNumber, onStep, onResend }) => {
   const { mutateAsync, isPending } = useMutation({
     mutationFn: checkOTP,
   });
-
 
   useEffect(() => {
     const timer = time > 0 && setInterval(() => setTime((t) => t - 1), 1000);
@@ -31,7 +32,7 @@ const CheckOTP = ({ phoneNumber, onStep, onResend }) => {
       const { message, user } = await mutateAsync({ phoneNumber, otp });
       toast.success(message);
       if (!user.isActive) return onStep(3);
-      router.push("/");
+      router.push(`/${role}`);
     } catch (error) {
       console.log(error);
       toast.error(error?.response?.data?.message);
@@ -68,14 +69,17 @@ const CheckOTP = ({ phoneNumber, onStep, onResend }) => {
       {time > 0 ? (
         <>
           <button className="mt-2 btn btn-active btn-primary w-full text-lg h-[45px] text-white">
-            {isPending ? <Loading/> : "ثبت کد"}
+            {isPending ? <Loading /> : "ثبت کد"}
           </button>
           <p className="mt-2 text-center text-gray-800">
             {time} ثانیه تا ارسال مجدد کد
           </p>
         </>
       ) : (
-        <button onClick={onResend} className="mt-2 btn btn-active btn-info w-full text-lg h-[45px] text-white">
+        <button
+          onClick={onResend}
+          className="mt-2 btn btn-active btn-info w-full text-lg h-[45px] text-white"
+        >
           ارسال مجدد کد؟
         </button>
       )}
