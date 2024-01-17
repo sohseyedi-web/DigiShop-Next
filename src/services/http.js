@@ -16,22 +16,17 @@ app.interceptors.response.use(
     const originalConfig = err.config;
     if (err.response.status === 401 && !originalConfig._retry) {
       originalConfig._retry = true;
-
       try {
         const { data } = await axios.get(
-          "http://localhost:5000/api/user/refresh-token",
-          {
-            withCredentials: true,
-          }
+          `http://localhost:5000/api/user/refresh-token`,
+          { withCredentials: true }
         );
-
         if (data) return app(originalConfig);
       } catch (error) {
-        Promise.reject(error);
+        return Promise.reject(error);
       }
-    } else {
-      return Promise.reject(err);
     }
+    return Promise.reject(err);
   }
 );
 

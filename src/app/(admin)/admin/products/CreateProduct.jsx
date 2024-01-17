@@ -9,8 +9,22 @@ const CreateProduct = ({ onClose }) => {
   const [description, setDescription] = useState("");
   const [englishTitle, setEnglishTitle] = useState("");
 
+  const [formState, setFormState] = useState({
+    title: "",
+    description: "",
+    englishTitle: "",
+    type: "",
+  });
+
   return (
     <form className="space-y-3">
+      <TextField
+        label={"عنوان دسته بندی"}
+        name="title"
+        value={formState.title}
+        onChange={onChangeHandler}
+        placeholder="مثال : برنامه نویسی"
+      />
       <TextField
         label={"عنوان دسته بندی"}
         name="title"
