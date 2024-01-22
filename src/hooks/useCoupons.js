@@ -6,10 +6,11 @@ import {
   updateCoupon,
 } from "@/services/couponService";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-hot-toast";
 
 export const useGetCoupons = () =>
   useQuery({
-    queryKey: ["get-coupons"],
+    queryKey: ["get-coupon"],
     queryFn: getAllCoupns,
     retry: false,
     refetchOnWindowFocus: true,
@@ -30,7 +31,7 @@ export const useCreateCoupon = () => {
     onSuccess: (data) => {
       toast.success(data.message);
       queryClient.invalidateQueries({
-        queryKey: ["get-coupons"],
+        queryKey: ["get-coupon"],
       });
     },
     onError: (error) => {
@@ -46,9 +47,10 @@ export const useRemoveCoupons = () => {
 
   const { isPending: isDeleting, mutateAsync: removeCoupons } = useMutation({
     mutationFn: deleteCoupon,
-    onSuccess: () => {
+    onSuccess: (data) => {
+      toast.success(data.message);
       queryClient.invalidateQueries({
-        queryKey: ["get-coupons"],
+        queryKey: ["get-coupon"],
       });
     },
     onError: (err) => toast.error(err?.response?.data?.message),
@@ -64,7 +66,7 @@ export const useUpdateCoupon = () => {
     onSuccess: (data) => {
       toast.success(data.message);
       queryClient.invalidateQueries({
-        queryKey: ["get-coupons"],
+        queryKey: ["get-coupon"],
       });
     },
     onError: (err) => {
