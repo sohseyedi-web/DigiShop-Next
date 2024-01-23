@@ -1,12 +1,19 @@
 import HeaderLayout from "@/components/HeaderLayout";
-
+import queryString from "query-string";
 import CategorySidebar from "./CategorySidebar";
 import { getProducts } from "@/services/productServices";
 import { getCategory } from "@/services/categoryServices";
 
-export default async function Products() {
-  const { products } = await getProducts();
-  const { categories } = await getCategory();
+export const dynamic = "force-dynamic";
+
+export default async function Products({ searchParams }) {
+  const getAllProduct = getProducts(queryString.stringify(searchParams));
+  const getCategories = getCategory();
+
+  const [{ products }, { categories }] = await Promise.all([
+    getAllProduct,
+    getCategories,
+  ]);
 
   return (
     <>
