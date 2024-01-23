@@ -5,7 +5,7 @@ import { SiRobotframework } from "react-icons/si";
 import { useResponsive } from "@/context/ResponsiveContext";
 
 const SidebarLayout = ({ children }) => {
-  const { active  } = useResponsive();
+  const { active } = useResponsive();
   const logoutHandler = async () => {
     await logout();
     document.location.href("/");
