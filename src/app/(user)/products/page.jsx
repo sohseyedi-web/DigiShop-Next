@@ -7,11 +7,14 @@ import { getCategory } from "@/services/categoryServices";
 import { toLocalDateStringShort } from "@/utils/toLocalDate";
 import Link from "next/link";
 import AddToCart from "./AddToCart";
+import { cookies } from "next/dist/client/components/headers";
 
 export const dynamic = "force-dynamic";
 
 export default async function Products({ searchParams }) {
-  const getAllProduct = getProducts(queryString.stringify(searchParams));
+  const cookiesStore = cookies();
+  const strCookies = cookiesStore.getAll()
+  const getAllProduct = getProducts(queryString.stringify(searchParams),strCookies);
   const getCategories = getCategory();
 
   const [{ products }, { categories }] = await Promise.all([
