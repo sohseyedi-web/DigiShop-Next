@@ -1,9 +1,9 @@
-import Loading from "@/ui/Loading";
+
 import { toPersianNumbersWithComma } from "@/utils/toPersianNumbers";
+import AddToPayment from "./AddToPayment";
 
 const CartSummary = ({ payDetail, cartLen }) => {
   const { totalOffAmount, totalPrice, totalGrossPrice } = payDetail;
-  let loading = false;
   return (
     <div className="w-full space-y-2">
       <p className="font-bold text-center">اطلاعات پرداخت</p>
@@ -25,9 +25,7 @@ const CartSummary = ({ payDetail, cartLen }) => {
         <span className="font-semibold">مبلغ قابل پرداخت</span>
         <span>{toPersianNumbersWithComma(totalPrice)}</span>
       </div>
-      <button className="mt-2 btn btn-active btn-primary w-full text-lg h-[45px] text-white">
-        {loading ? <Loading /> : "ثبت سفارش"}
-      </button>
+      <AddToPayment/>
     </div>
   );
 };
