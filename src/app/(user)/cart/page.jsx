@@ -11,11 +11,14 @@ function CartPage() {
 
   if (isLoading) return <Loading />;
 
-  console.log(user?.cart);
+  const cartLen = user?.cart?.products.reduce(
+    (acc, cur) => acc + cur.quantity,
+    0
+  );
 
   if (!user) {
     return (
-      <div className=" text-center w-full mt-5">
+      <div className=" text-center w-full pt-5">
         <p className="font-bold mb-4">
           برای مشاهده سبد خرید لطفا وارد حساب شوید{" "}
         </p>
@@ -28,7 +31,7 @@ function CartPage() {
 
   if (user?.cart?.products.length === 0) {
     return (
-      <div className="w-full text-center mt-5">
+      <div className="w-full text-center pt-5">
         <p className="font-bold mb-4">سبد خرید خالیه!</p>
         <Link href="/products" className="text-lg font-bold text-indigo-700">
           رفتن به صفحه محصولات
@@ -49,10 +52,7 @@ function CartPage() {
             ))}
           </div>
           <div className="lg:w-[23%] w-full p-2 rounded-md shadow-md">
-            <CartSummary
-              payDetail={cart.payDetail}
-              cartLen={user?.cart?.products.length}
-            />
+            <CartSummary payDetail={cart.payDetail} cartLen={cartLen} />
           </div>
         </div>
       ) : null}

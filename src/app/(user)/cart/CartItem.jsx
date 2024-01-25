@@ -20,13 +20,13 @@ const CartItem = ({ cartItem }) => {
         </div>
         <div className="text-[1.1rem] mr-5">
           <div
-            className={`${
-              cartItem.discount ? "line-through text-gray-500" : "font-bold"
-            }`}
+            className={"font-semibold"}
           >
             {cartItem.title}
           </div>
-          <div className="cart-container__details-box__right-product__price">
+          <div className={`${
+              cartItem.discount ? "line-through text-gray-500" : "font-bold"
+            }`}>
             {toPersianNumbersWithComma(cartItem.price)} تومان
           </div>
           {!!cartItem.discount && (
@@ -36,7 +36,7 @@ const CartItem = ({ cartItem }) => {
                 {toPersianNumbersWithComma(cartItem.offPrice)}
               </p>
               <div className="bg-rose-500 px-2 py-0.5 rounded-xl text-white text-sm">
-                {toPersianNumbers(cartItem.discount)} %
+                {toPersianNumbersWithComma(cartItem.discount)} %
               </div>
             </div>
           )}

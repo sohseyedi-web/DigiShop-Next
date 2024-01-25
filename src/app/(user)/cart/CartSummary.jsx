@@ -15,7 +15,7 @@ const CartSummary = ({ payDetail, cartLen }) => {
 
       <div className="flex items-center justify-between">
         <span className="font-semibold">تخفیف</span>
-        <span>{toPersianNumbersWithComma(totalOffAmount)}-</span>
+        <span>{toPersianNumbersWithComma(totalOffAmount)}</span>
       </div>
       <div className="flex items-center justify-between">
         <span className="font-semibold">تعداد سفارشات</span>
