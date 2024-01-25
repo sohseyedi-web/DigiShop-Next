@@ -11,7 +11,7 @@ function CartPage() {
 
   if (isLoading) return <Loading />;
 
-  console.log(cart);
+  console.log(user?.cart);
 
   if (!user) {
     return (
@@ -49,7 +49,10 @@ function CartPage() {
             ))}
           </div>
           <div className="lg:w-[23%] w-full p-2 rounded-md shadow-md">
-            <CartSummary payDetail={cart.payDetail} />
+            <CartSummary
+              payDetail={cart.payDetail}
+              cartLen={user?.cart?.products.length}
+            />
           </div>
         </div>
       ) : null}

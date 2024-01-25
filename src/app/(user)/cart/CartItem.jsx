@@ -2,8 +2,12 @@
 import { toPersianNumbersWithComma } from "@/utils/toPersianNumbers";
 import { SiRobotframework } from "react-icons/si";
 import * as RiIcon from "react-icons/ri";
+import { useAddToCart, useRemoveCart } from "@/hooks/useCart";
 
 const CartItem = ({ cartItem }) => {
+  const { addCart } = useAddToCart();
+  const { removeCart } = useRemoveCart();
+
   return (
     <div
       className="flex items-center justify-between my-2 border rounded shadow-sm px-2"
@@ -39,13 +43,17 @@ const CartItem = ({ cartItem }) => {
         </div>
       </div>
       <div className="flex items-center gap-x-3">
-        <button className="btn btn-circle btn-success btn-sm text-white border-none">
+        <button
+          onClick={() => addCart(cartItem?._id)}
+          className="btn btn-circle btn-success btn-sm text-white border-none"
+        >
           <RiIcon.RiAddLine size={24} />
         </button>
         <span className="font-semibold">
           {toPersianNumbersWithComma(cartItem.quantity)}
         </span>
         <button
+          onClick={() => removeCart(cartItem?._id)}
           className={`${
             cartItem.quantity > 1
               ? "btn-success btn btn-sm btn-circle"
