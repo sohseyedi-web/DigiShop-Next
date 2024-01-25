@@ -1,5 +1,8 @@
 import { getProducts, getProductBySlug } from "@/services/productServices";
-import { toPersianNumbers, toPersianNumbersWithComma } from "@/utils/toPersianNumbers";
+import {
+  toPersianNumbers,
+  toPersianNumbersWithComma,
+} from "@/utils/toPersianNumbers";
 import AddToCart from "../AddToCart";
 
 export const dynamic = "force-static";

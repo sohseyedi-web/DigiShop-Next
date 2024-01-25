@@ -21,7 +21,6 @@ export function getProductBySlug(slug) {
 export function productLiked(id) {
   return http.post(`/product/like/${id}`).then(({ data }) => data.data);
 }
-
 export function addNewProduct(data) {
   return http.post(`/admin/product/add`, data).then(({ data }) => data.data);
 }
