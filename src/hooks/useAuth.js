@@ -9,8 +9,8 @@ export const useAuth = () => {
     refetchOnWindowFocus: true,
   });
 
-  const { user, cart } = data || {};
-  const role = user?.role === "ADMIN" ? "admin" : "profile"
+  const { user, cart, payments } = data || {};
+  const role = user?.role === "ADMIN" ? "admin" : "profile";
 
-  return { isLoading, user, cart,role };
+  return { isLoading, user, cart, role, payments };
 };
