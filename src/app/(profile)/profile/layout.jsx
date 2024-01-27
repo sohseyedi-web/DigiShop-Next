@@ -2,6 +2,8 @@ import vazirFont from "@/constants/localFonts";
 import "../../globals.css";
 import { Toaster } from "react-hot-toast";
 import Providers from "../../Providers";
+import NavbarPanel from "@/components/panel/NavbarPanel";
+import Sidebar from "./Sidebar";
 
 export const metadata = {
   title: "دیجی شاپ / پروفایل",
@@ -17,7 +19,13 @@ export default function RootLayout({ children }) {
       >
         <Providers>
           <Toaster />
-          {children}
+          <section className="flex container mx-auto">
+            <Sidebar />
+            <div className="flex-1 p-5">
+              <NavbarPanel />
+              {children}
+            </div>
+          </section>
         </Providers>
       </body>
     </html>
