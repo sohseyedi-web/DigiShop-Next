@@ -1,20 +1,18 @@
-import { adminPaymentListTableTHeads } from '@/constants/tableHeads';
-import { usePayments } from '@/hooks/usePayments';
-import Loading from '@/ui/Loading';
-import Table from '@/ui/Table'
-import PaymentsRow from './PaymentsRow';
+import { adminPaymentListTableTHeads } from "@/constants/tableHeads";
+import { usePayments } from "@/hooks/usePayments";
+import Loading from "@/ui/Loading";
+import Table from "@/ui/Table";
+import PaymentsRow from "./PaymentsRow";
 
 const PaymentsLists = () => {
-
   const { payments, isLoading } = usePayments();
-
 
   if (isLoading) return <Loading />;
   if (!payments?.length) return <p>سفارشی وجود ندارد</p>;
 
   return (
     <Table>
-       <thead>
+      <thead>
         <tr className=" text-gray-800">
           {adminPaymentListTableTHeads.map((item) => (
             <th key={item.id}>{item.label}</th>
@@ -27,7 +25,7 @@ const PaymentsLists = () => {
         ))}
       </tbody>
     </Table>
-  )
-}
+  );
+};
 
-export default PaymentsLists
+export default PaymentsLists;

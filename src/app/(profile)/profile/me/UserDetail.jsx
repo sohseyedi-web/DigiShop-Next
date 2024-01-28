@@ -1,27 +1,35 @@
 "use client";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth, useUpadateUser } from "@/hooks/useAuth";
 import Loading from "@/ui/Loading";
 import TextField from "@/ui/TextField";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const UserDetail = () => {
   const { user, isLoading } = useAuth();
-  const [formData, setFormData] = useState({
-    name: user?.name,
-    email: user?.eamil,
-    phoneNumber: user?.phoneNumber,
-    biography: user?.biography,
-  });
+  const { isUpdating, updateUserProfile } = useUpadateUser();
+  const [formData, setFormData] = useState({});
+
+  useEffect(() => {
+    if (user) setFormData(user);
+  }, [user]);
+
+  const sumbitHandler = async (e) => {
+    e.preventDefault();
+    await updateUserProfile(formData);
+  };
 
   const onChangeHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  if (isLoading || !user) return <Loading />;
+  if (isLoading) return <Loading />;
+
+  console.log(formData)
+
 
   return (
-    <form className="space-y-4 flex items-center gap-x-3 flex-wrap">
-      <div className="lg:w-[45%] w-full">
+    <form onSubmit={sumbitHandler} className="space-y-4 flex flex-col">
+      <div className="lg:w-[40%] w-full">
         <TextField
           label={"نام کاربری"}
           name={"name"}
@@ -29,7 +37,7 @@ const UserDetail = () => {
           onChange={onChangeHandler}
         />
       </div>
-      <div className="lg:w-[45%] w-full">
+      <div className="lg:w-[40%] w-full">
         <TextField
           label={"ایمیل"}
           name={"email"}
@@ -37,7 +45,7 @@ const UserDetail = () => {
           onChange={onChangeHandler}
         />
       </div>
-      <div className="lg:w-[45%] w-full">
+      <div className="lg:w-[40%] w-full">
         <TextField
           label={"شماره موبایل"}
           name={"phoneNumber"}
@@ -45,14 +53,18 @@ const UserDetail = () => {
           onChange={onChangeHandler}
         />
       </div>
-      <div className="lg:w-[45%] w-full">
+      <div className="lg:w-[40%] w-full">
         <TextField
           label={"اطلاعات بیشتر"}
           name={"biography"}
           value={formData.biography}
           onChange={onChangeHandler}
+          placeholder={"اطلاعات بیشتری از خودت بنویس"}
         />
       </div>
+      <button className="btn btn-active btn-primary lg:w-[40%] w-full text-lg h-[45px] text-white">
+        {isUpdating ? <Loading /> : "ویرایش اطلاعات"}
+      </button>
     </form>
   );
 };
