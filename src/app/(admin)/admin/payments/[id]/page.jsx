@@ -1,3 +1,4 @@
+"use client"
 import { useGetPaymentById } from "@/hooks/usePayments";
 import Loading from "@/ui/Loading";
 import Link from "next/link";
@@ -15,8 +16,8 @@ const SignlePayment = () => {
   if (isLoading) return <Loading />;
 
   return (
-    <section>
-      <header className="flex items-center gap-x-3">
+    <section className="pt-3">
+      <header className="flex items-center py-2">
         <span onClick={onBack} className="text-blue-500">
           <RiArrowRightSLine size={24} />
         </span>

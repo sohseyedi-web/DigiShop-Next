@@ -1,7 +1,7 @@
 import { toLocalDateStringShort } from "@/utils/toLocalDate";
 import { toPersianNumbersWithComma } from "@/utils/toPersianNumbers";
 import Link from "next/link";
-import * as HiIcon from "react-icons/hi2";
+import {HiEye} from "react-icons/hi2";
 const PaymentsRow = ({ index, payment }) => {
   return (
     <tr key={payment._id}>
@@ -43,7 +43,7 @@ const PaymentsRow = ({ index, payment }) => {
       </td>
       <td className="table__td">
         <Link href={`/admin/payments/${payment._id}`}>
-          <HiIcon.HiEye className="w-6 h-6 text-blue-500" />
+          <HiEye className="w-6 h-6 text-blue-500" />
         </Link>
       </td>
     </tr>

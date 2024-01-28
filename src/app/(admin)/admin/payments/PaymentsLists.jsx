@@ -8,6 +8,7 @@ const PaymentsLists = () => {
   const { payments, isLoading } = usePayments();
 
   if (isLoading) return <Loading />;
+  
   if (!payments?.length) return <p>سفارشی وجود ندارد</p>;
 
   return (
