@@ -8,6 +8,7 @@ const ProductsListTabel = () => {
   const { products, isLoading } = useGetProducts();
 
   if (isLoading) return <Loading />;
+  if (!products?.length) return <p>محصولی ایجاد نکردید</p>;
 
   return (
     <Table>

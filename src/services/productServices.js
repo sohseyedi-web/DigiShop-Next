@@ -31,7 +31,7 @@ export function removeProduct(id) {
     .then(({ data }) => data.data);
 }
 
-export function updateProduct(id, data) {
+export function updateProduct({id, data}) {
   return http
     .patch(`/admin/product/update/${id}`, data)
     .then(({ data }) => data.data);

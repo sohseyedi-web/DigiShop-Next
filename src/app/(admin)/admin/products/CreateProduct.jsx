@@ -28,7 +28,6 @@ const CreateProduct = ({ onClose }) => {
   };
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
     const data = { ...formState, tags, category: selectCategory };
     await addProduct(data, {

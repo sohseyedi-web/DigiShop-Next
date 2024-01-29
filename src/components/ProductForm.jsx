@@ -56,11 +56,11 @@ const ProductForm = ({
   tags,
   setTags,
   categories,
-  selectCategory,
-  setSelectCategory,
   loading,
   onChange,
   formData,
+  selectCategory,
+  setSelectCategory,
 }) => {
   return (
     <form className="space-y-4 overflow-y-auto h-[300px]" onSubmit={onSubmit}>
@@ -85,7 +85,7 @@ const ProductForm = ({
       <SelectField
         name={"category"}
         options={categories}
-        value={selectCategory}
+        value={selectCategory || ""}
         onChange={setSelectCategory}
         label={"دسته بندی"}
       />

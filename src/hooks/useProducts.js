@@ -21,13 +21,17 @@ export const useGetProducts = () => {
   return { isLoading, products };
 };
 
-export const useGetProductById = (id) =>
-  useQuery({
+export const useGetProductById = (id) => {
+  const { data, isLoading } = useQuery({
     queryKey: ["get-products", id],
     queryFn: () => getProductById(id),
     retry: false,
     refetchOnWindowFocus: true,
   });
+
+  const { product } = data || {};
+  return { product, isLoading };
+};
 
 export const useCreateProduct = () => {
   const queryClient = useQueryClient();
@@ -53,6 +57,7 @@ export const useRemoveProduct = () => {
   const { isPending: isDeleting, mutateAsync: removeProducts } = useMutation({
     mutationFn: removeProduct,
     onSuccess: () => {
+      toast.success(data.message);
       queryClient.invalidateQueries({
         queryKey: ["get-products"],
       });
