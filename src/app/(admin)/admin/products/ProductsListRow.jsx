@@ -1,12 +1,16 @@
 import Link from "next/link";
 import { HiEye, HiTrash } from "react-icons/hi2";
-import { RiEdit2Line} from "react-icons/ri";
+import { RiEdit2Line } from "react-icons/ri";
 import {
   toPersianNumbersWithComma,
   toPersianNumbers,
 } from "@/utils/toPersianNumbers";
+import { useRemoveProduct } from "@/hooks/useProducts";
+import Loading from "@/ui/Loading";
 
-const ProductsListRow = ({ product,index }) => {
+const ProductsListRow = ({ product, index }) => {
+  const { isDeleting, removeProducts } = useRemoveProduct();
+
   return (
     <tr key={product._id}>
       <td>{index + 1}</td>
@@ -21,8 +25,12 @@ const ProductsListRow = ({ product,index }) => {
           <Link href={`/admin/products/${product._id}`}>
             <HiEye className="text-blue-900 w-6 h-6" />
           </Link>
-          <button>
-            <HiTrash className="text-rose-600 w-6 h-6" />
+          <button onClick={() => removeProducts(product._id)}>
+            {isDeleting ? (
+              <Loading />
+            ) : (
+              <HiTrash className="text-rose-600 w-6 h-6" />
+            )}
           </button>
           <Link href={`/admin/products/edit/${product._id}`}>
             <RiEdit2Line className="w-6 h-6 text-gray-800" />
