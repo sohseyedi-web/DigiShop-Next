@@ -1,7 +1,9 @@
 const SelectField = ({ label, options, name, value, onChange }) => {
   return (
     <div className="space-y-3">
-      <label className="block mb-1 text-lg text-right text-black">{label}</label>
+      <label className="block mb-1 text-lg text-right text-black">
+        {label}
+      </label>
       <select
         name={name}
         value={value}
@@ -11,10 +13,10 @@ const SelectField = ({ label, options, name, value, onChange }) => {
         {options?.map((option) => (
           <option
             className=" bg-gray-100"
-            value={option.value}
-            key={option.value}
+            value={option.value || option._id}
+            key={option.value || option._id}
           >
-            {option.label}
+            {option.label || option.title}
           </option>
         ))}
       </select>

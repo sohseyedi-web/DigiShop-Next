@@ -1,54 +1,53 @@
-import React from "react";
-import { useCreateCategory } from "@/hooks/useCategories";
+"use client";
+import { useGetCategories } from "@/hooks/useCategories";
 import { useState } from "react";
-import TextField from "@/ui/TextField";
+import { useCreateProduct } from "@/hooks/useProducts";
+import ProductForm from "@/components/ProductForm";
 
 const CreateProduct = ({ onClose }) => {
-  const { addCategory, isCreating } = useCreateCategory();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [englishTitle, setEnglishTitle] = useState("");
+  const { addProduct, isCreating } = useCreateProduct();
+  const { data } = useGetCategories();
+  const { categories } = data || {};
 
   const [formState, setFormState] = useState({
     title: "",
     description: "",
-    englishTitle: "",
-    type: "",
+    slug: "",
+    price: "",
+    offPrice: "",
+    discount: "",
+    brand: "",
+    imageLink: "",
+    countInStock: "",
   });
+  const [tags, setTags] = useState([]);
+  const [selectCategory, setSelectCategory] = useState("");
+
+  const onChangeHandler = (e) => {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+    const data = { ...formState, tags, category: selectCategory };
+    await addProduct(data, {
+      onSuccess: () => onClose(),
+    });
+  };
 
   return (
-    <form className="space-y-3">
-      <TextField
-        label={"عنوان دسته بندی"}
-        name="title"
-        value={formState.title}
-        onChange={onChangeHandler}
-        placeholder="مثال : برنامه نویسی"
-      />
-      <TextField
-        label={"عنوان دسته بندی"}
-        name="title"
-        register={register}
-        required
-        errors={errors}
-        placeHolder="مثال : برنامه نویسی"
-        validationSchema={{
-          required: "عنوان دسته بندی ضرروی است",
-        }}
-      />
-      <TextField />
-      <TextField
-        label={"عنوان انگلیسی"}
-        name="englishTitle"
-        errors={errors}
-        placeHolder={"مثال : design"}
-        required
-        register={register}
-        validationSchema={{
-          required: "عنوان انگلیسی ضرروی است",
-        }}
-      />
-    </form>
+    <ProductForm
+      onChange={onChangeHandler}
+      tags={tags}
+      setTags={setTags}
+      formData={formState}
+      loading={isCreating}
+      onSubmit={handleSubmit}
+      categories={categories}
+      selectCategory={selectCategory}
+      setSelectCategory={(e) => setSelectCategory(e.target.value)}
+    />
   );
 };
 
